@@ -14,11 +14,9 @@ public class Queue8 {
 		queue8.check(0);
 		System.out.printf("一共有%d解法", count);
 		System.out.printf("一共判断冲突的次数%d次", judgeCount); // 1.5w
-		
+
 	}
-	
-	
-	
+
 	//编写一个方法，放置第n个皇后
 	//特别注意： check 是 每一次递归时，进入到check中都有  for(int i = 0; i < max; i++)，因此会有回溯
 	private void check(int n) {

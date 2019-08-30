@@ -11,7 +11,7 @@ public class QuickSort {
 		
 		//测试快排的执行速度
 		// 创建要给80000个的随机的数组
-		int[] arr = new int[8000000];
+	/*	int[] arr = new int[8000000];
 		for (int i = 0; i < 8000000; i++) {
 			arr[i] = (int) (Math.random() * 8000000); // 生成一个[0, 8000000) 数
 		}
@@ -26,8 +26,15 @@ public class QuickSort {
 		
 		Date data2 = new Date();
 		String date2Str = simpleDateFormat.format(data2);
-		System.out.println("排序前的时间是=" + date2Str);
+		System.out.println("排序前的时间是=" + date2Str);*/
 		//System.out.println("arr=" + Arrays.toString(arr));
+
+
+
+		/*int[] arr={-1,-2,0,1,-3};*/
+		int[] arr={-1,-2,0,-3,-4};
+		quickSort(arr, 0, arr.length-1);
+		System.out.println("arr=" + Arrays.toString(arr));
 	}
 
 	public static void quickSort(int[] arr,int left, int right) {
@@ -38,7 +45,7 @@ public class QuickSort {
 		int temp = 0; //临时变量，作为交换时使用
 		//while循环的目的是让比pivot 值小放到左边
 		//比pivot 值大放到右边
-		while( l < r) { 
+ 		while( l < r) {
 			//在pivot的左边一直找,找到大于等于pivot值,才退出
 			while( arr[l] < pivot) {
 				l += 1;
@@ -72,6 +79,8 @@ public class QuickSort {
 		if (l == r) {
 			l += 1;
 			r -= 1;
+			System.out.println(l);
+			System.out.println(r);
 		}
 		//向左递归
 		if(left < r) {
