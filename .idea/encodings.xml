@@ -4,6 +4,8 @@
     <file url="file://$PROJECT_DIR$/src/com/atguigu/avl/AVLTreeDemo.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/atguigu/binarysorttree/BinarySortTreeDemo.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/atguigu/hashtab/HashTabDemo.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/atguigu/huffmancode/HuffmanCode.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/atguigu/huffmantree/HuffmanTree.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/atguigu/linkedlist/DoubleLinkedListDemo.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/atguigu/linkedlist/Josepfu.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/atguigu/linkedlist/SingleLinkedListDemo.java" charset="GBK" />
@@ -28,6 +30,7 @@
     <file url="file://$PROJECT_DIR$/src/com/atguigu/stack/PolandNotation.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/atguigu/tree/ArrBinaryTreeDemo.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/atguigu/tree/BinaryTreeDemo.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/atguigu/tree/HeapSort.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/atguigu/tree/threadedbinarytree/ThreadedBinaryTreeDemo.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/bfsu/linkedlist/DoubleLinkedListDemo.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/bfsu/linkedlist/Josepfu.java" charset="GBK" />
