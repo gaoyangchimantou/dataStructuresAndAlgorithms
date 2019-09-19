@@ -1,12 +1,13 @@
 package com.bfsu.huffmancode;
 
+import java.io.*;
 import java.util.*;
 
 public class HuffmanCode {
 
     public static void main(String[] args) {
-        String content="i like like like java do you like a java";
-        byte[] bytes = content.getBytes();
+       /* String content="i like like like java do you like a java";
+        byte[] bytes = content.getBytes();*/
         //将 byte数组  转化为 node集合   先算出各个元素的个数
    /*    List<Node> contentList=new ArrayList<Node>();
         Map<Byte,Integer> contentMap=new HashMap<Byte,Integer>();
@@ -25,11 +26,19 @@ public class HuffmanCode {
         getCodes(huffmanTreeRoot);*/
       /*  System.out.println(huffmanCodes);*/
      /*  byte[] zip = zip(bytes, huffmanCodes);*/
-       byte[] zip = huffmanZip(bytes);
+
+     //-----------------------------------------------------------------------------
+
+       /*byte[] zip = huffmanZip(bytes);
         for (Byte b:zip) {
             System.out.println(b);
 
         }
+        byte[] decode = decode(huffmanCodes, zip);
+        System.out.println("==============================");
+        System.out.println(new String(decode));*/
+       // zipFile("e://src.bmp","e://src.zip");
+        unZipFile("e://src.zip","e://src2.bmp");
     }
     private static List<Node> getNodes(byte[] bytes) {
 
@@ -168,9 +177,106 @@ public class HuffmanCode {
         }
 
     }
+
+    /**
+     * 编写一个方法  完成对赫夫曼的解码
+     * @param huffmanCodes 赫夫曼编码表
+     * @param bytes 经过赫夫曼编码   等待需要解码的赫夫曼byte数组
+     * @return
+     */
+    private static byte[] decode(Map<Byte, String> huffmanCodes, byte[] bytes){
+        StringBuilder stringBuilder=new StringBuilder();
+        for (int i = 0; i < bytes.length; i++) {
+            boolean flag=(i==bytes.length-1);
+            stringBuilder.append(byteToBitString(!flag,bytes[i]));
+        }
+        Map<String,Byte> map=new HashMap<String,Byte>();
+        for(Map.Entry<Byte,String> entry :huffmanCodes.entrySet()){
+            map.put(entry.getValue(),entry.getKey());
+        }
+        List<Byte> list=new ArrayList<Byte>();
+        for (int i = 0; i <stringBuilder.length() ;) {
+            int count=1;
+            boolean flag=true;
+            Byte aByte=null;
+            while (flag){
+                String substring = stringBuilder.substring(i, i+count);
+                aByte = map.get(substring);
+                if(aByte==null){
+                    count++;
+                }else{
+                    list.add(aByte);
+                    flag=false;
+                }
+            }
+            i+=count;
+        }
+        byte[] bytes1=new byte[list.size()];
+        for (int i = 0; i <bytes1.length ; i++) {
+            bytes1[i]=list.get(i);
+        }
+        return bytes1;
+    }
+
+    /**
+     *使用赫夫曼算法  压缩文件
+     * @param src 需要要说的文件
+     * @param des 文件的目标地址
+     */
+    private static void zipFile(String src,String des) {
+        FileInputStream fis=null;
+        OutputStream os=null;
+        ObjectOutputStream oos=null;
+        try {
+
+                fis=new FileInputStream(src);
+                byte[] bytes=new byte[fis.available()];
+                fis.read(bytes);
+                byte[] bytes1 = huffmanZip(bytes);
+                os=new FileOutputStream(des);
+                oos=new ObjectOutputStream(os);
+                oos.writeObject(bytes1);
+                oos.writeObject(huffmanCodes);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                oos.close();
+                os.close();
+                fis.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private static void unZipFile(String zipFile,String file){
+        InputStream is=null;
+        ObjectInputStream ois=null;
+        OutputStream os=null;
+        try {
+            is=new FileInputStream(zipFile);
+            ois=new ObjectInputStream(is);
+            byte[] bytes= (byte[])ois.readObject();
+            Map<Byte,String> map=(Map<Byte,String>)ois.readObject();
+            byte[] decode = decode(map, bytes);
+            os=new FileOutputStream(file);
+            os.write(decode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                ois.close();
+                is.close();
+                os.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
 }
-
-
 
 
 
